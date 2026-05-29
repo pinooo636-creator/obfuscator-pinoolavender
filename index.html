@@ -1,52 +1,114 @@
-<script>
-    let lastOutput = "";
-    const API = "/api/obfuscate";
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lua Obfuscator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            background: #222;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 80px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
 
-    async function run() {
-        const btn = document.getElementById("btn-obfuscate");
-        const code = document.getElementById("input").value;
-        
-        if(!code.trim()) {
-            alert("Masukkan code Lua terlebih dahulu!");
-            return;
+    <h2>Lua Code Obfuscator</h2>
+    
+    <textarea id="input" placeholder="Masukkan kode Lua kamu di sini..."></textarea>
+    
+    <button id="btn-obfuscate" onclick="run()">Obfuscate Now</button>
+    <button onclick="copyText()">Copy Code</button>
+    <button onclick="downloadFile()">Download .lua</button>
+
+    <h3>Output:</h3>
+    <pre id="output">-- Hasil akan muncul di sini --</pre>
+
+    <script>
+        let lastOutput = "";
+        const API = "/api/obfuscate"; // Pastikan backend/API ini aktif saat dijalankan
+
+        async function run() {
+            const btn = document.getElementById("btn-obfuscate");
+            const code = document.getElementById("input").value;
+            
+            if(!code.trim()) {
+                alert("Masukkan code Lua terlebih dahulu!");
+                return;
+            }
+
+            btn.innerText = "Processing...";
+            btn.style.opacity = "0.8";
+
+            try {
+                const res = await fetch(API, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                const data = await res.json();
+
+                lastOutput = data.obfuscated || "-- ERROR --";
+                document.getElementById("output").innerText = lastOutput;
+
+            } catch (err) {
+                document.getElementById("output").innerText = "-- API ERROR --";
+            } finally {
+                btn.innerHTML = "Obfuscate Now";
+                btn.style.opacity = "1";
+            }
         }
 
-        btn.innerText = "Processing...";
-        btn.style.opacity = "0.8";
-
-        try {
-            const res = await fetch(API, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code })
-            });
-
-            const data = await res.json();
-
-            lastOutput = data.obfuscated || "-- ERROR --";
-            document.getElementById("output").innerText = lastOutput;
-
-        } catch (err) {
-            document.getElementById("output").innerText = "-- API ERROR --";
-        } finally {
-            btn.innerHTML = "Obfuscate Now";
-            btn.style.opacity = "1";
+        function copyText() {
+            if(!lastOutput) return alert("Belum ada output!");
+            navigator.clipboard.writeText(lastOutput);
+            alert("Code berhasil disalin!");
         }
-    }
 
-    function copyText() {
-        if(!lastOutput) return alert("Belum ada output!");
-        navigator.clipboard.writeText(lastOutput);
-    }
-
-    function downloadFile() {
-        if(!lastOutput) return alert("Belum ada output!");
-        const blob = new Blob([lastOutput], { type: "text/plain" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "obfuscated.lua";
-        a.click();
-    }
-</script>
+        function downloadFile() {
+            if(!lastOutput) return alert("Belum ada output!");
+            const blob = new Blob([lastOutput], { type: "text/plain" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "obfuscated.lua";
+            a.click();
+        }
+    </script>
+</body>
+</html>
