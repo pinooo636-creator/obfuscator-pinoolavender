@@ -1,0 +1,52 @@
+<script>
+    let lastOutput = "";
+    const API = "/api/obfuscate";
+
+    async function run() {
+        const btn = document.getElementById("btn-obfuscate");
+        const code = document.getElementById("input").value;
+        
+        if(!code.trim()) {
+            alert("Masukkan code Lua terlebih dahulu!");
+            return;
+        }
+
+        btn.innerText = "Processing...";
+        btn.style.opacity = "0.8";
+
+        try {
+            const res = await fetch(API, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code })
+            });
+
+            const data = await res.json();
+
+            lastOutput = data.obfuscated || "-- ERROR --";
+            document.getElementById("output").innerText = lastOutput;
+
+        } catch (err) {
+            document.getElementById("output").innerText = "-- API ERROR --";
+        } finally {
+            btn.innerHTML = "Obfuscate Now";
+            btn.style.opacity = "1";
+        }
+    }
+
+    function copyText() {
+        if(!lastOutput) return alert("Belum ada output!");
+        navigator.clipboard.writeText(lastOutput);
+    }
+
+    function downloadFile() {
+        if(!lastOutput) return alert("Belum ada output!");
+        const blob = new Blob([lastOutput], { type: "text/plain" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "obfuscated.lua";
+        a.click();
+    }
+</script>
