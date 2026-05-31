@@ -44,13 +44,20 @@
             font-size: 32px;
             font-weight: 900;
             letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #f0e6ff 0%, #d580ff 30%, #b14eff 60%, #8b1aff 100%);
+            background: linear-gradient(90deg, #a855f7, #a8ff3e 60%, #c084fc);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            background-size: 200%;
+            animation: textShift 6s linear infinite;
             font-family: 'Inter', 'SF Pro Display', system-ui;
-            text-shadow: 0 0 20px rgba(177, 78, 255, 0.3);
+            text-shadow: 0 0 20px rgba(168, 255, 62, 0.15);
             position: relative;
+        }
+
+        @keyframes textShift {
+            0%   { background-position: 0%; }
+            100% { background-position: 200%; }
         }
 
         .logo-text::after {
@@ -60,21 +67,30 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, #b14eff, #e0b0ff, #b14eff);
+            background: linear-gradient(90deg, #a855f7, #a8ff3e, #c084fc);
             border-radius: 2px;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .logo-sub {
             font-size: 11px;
             font-weight: 600;
-            color: #6b6f92;
             letter-spacing: 1px;
             font-family: 'Inter', monospace;
             background: #11161f;
             padding: 4px 10px;
             border-radius: 20px;
-            border-left: 2px solid #b14eff;
+            border-left: 2px solid #a8ff3e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #6b6f92;
+        }
+
+        .logo-sub:hover {
+            background: #a855f7;
+            color: white;
+            border-left-color: white;
+            transform: translateY(-2px);
         }
 
         .social-links {
@@ -96,10 +112,10 @@
         }
 
         .social-icon:hover {
-            background: #b14eff;
-            border-color: #d580ff;
+            background: #a855f7;
+            border-color: #a8ff3e;
             transform: translateY(-3px);
-            box-shadow: 0 6px 14px rgba(177, 78, 255, 0.25);
+            box-shadow: 0 6px 14px rgba(168, 255, 62, 0.25);
         }
 
         .social-icon:hover svg {
@@ -123,6 +139,32 @@
             gap: 24px;
         }
 
+        .video-container {
+            background: #0a0d14;
+            border-radius: 18px;
+            border: 1px solid #1c202a;
+            overflow: hidden;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            max-height: 360px;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+        }
+
         .editor-panel {
             background: #0a0d14;
             border-radius: 18px;
@@ -132,8 +174,8 @@
         }
 
         .editor-panel:focus-within {
-            border-color: #b14eff;
-            box-shadow: 0 0 0 2px rgba(177, 78, 255, 0.15);
+            border-color: #a8ff3e;
+            box-shadow: 0 0 0 2px rgba(168, 255, 62, 0.15);
         }
 
         .panel-head {
@@ -168,7 +210,7 @@
             padding: 2px 10px;
             border-radius: 20px;
             font-size: 10px;
-            color: #c084fc;
+            color: #a8ff3e;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
@@ -198,7 +240,7 @@
         }
 
         .CodeMirror-cursor {
-            border-left: 2px solid #c084fc;
+            border-left: 2px solid #a8ff3e;
         }
 
         .cm-s-material-palenight .cm-keyword { color: #ff79c6; }
@@ -233,16 +275,16 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #b14eff 0%, #9b2de2 100%);
-            border-color: #c16eff;
+            background: linear-gradient(135deg, #a855f7 0%, #8b1aff 100%);
+            border-color: #a8ff3e;
             color: white;
-            box-shadow: 0 2px 6px rgba(177, 78, 255, 0.3);
+            box-shadow: 0 2px 6px rgba(168, 255, 62, 0.3);
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #c05eff 0%, #ad3df5 100%);
+            background: linear-gradient(135deg, #b96eff 0%, #9b2de2 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(177, 78, 255, 0.35);
+            box-shadow: 0 6px 14px rgba(168, 255, 62, 0.35);
         }
 
         .btn:hover {
@@ -275,7 +317,7 @@
         .info-header svg {
             width: 18px;
             height: 18px;
-            stroke: #b14eff;
+            stroke: #a8ff3e;
             stroke-width: 1.8;
         }
 
@@ -283,7 +325,7 @@
             font-family: 'Inter', monospace;
             font-weight: 700;
             font-size: 14px;
-            color: #c084fc;
+            color: #a8ff3e;
             letter-spacing: 0.5px;
         }
 
@@ -324,7 +366,7 @@
         }
 
         .benefit-card:hover {
-            border-color: #b14eff;
+            border-color: #a8ff3e;
             transform: translateY(-2px);
         }
 
@@ -332,7 +374,7 @@
             font-family: 'Inter', system-ui;
             font-size: 14px;
             font-weight: 700;
-            color: #d580ff;
+            color: #a8ff3e;
             margin-bottom: 8px;
             letter-spacing: -0.2px;
         }
@@ -361,7 +403,7 @@
             font-family: 'Inter', monospace;
             font-weight: 700;
             font-size: 14px;
-            color: #c084fc;
+            color: #a8ff3e;
             letter-spacing: 0.5px;
         }
 
@@ -416,8 +458,90 @@
         }
 
         .accent {
-            color: #c287ff;
+            color: #a8ff3e;
             font-weight: 600;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #0a0d14;
+            border: 1px solid #a855f7;
+            border-radius: 24px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .modal-content h3 {
+            color: #a855f7;
+            font-family: 'Inter', monospace;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #a5adcc;
+            font-family: 'Inter', monospace;
+            font-size: 14px;
+            margin-bottom: 24px;
+            word-break: break-all;
+            background: #11161f;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #282e3c;
+            user-select: all;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 10px 24px;
+            border-radius: 44px;
+            font-family: 'Inter', system-ui;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .modal-btn-copy {
+            background: linear-gradient(135deg, #a855f7 0%, #8b1aff 100%);
+            color: white;
+        }
+
+        .modal-btn-copy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(168, 85, 247, 0.35);
+        }
+
+        .modal-btn-close {
+            background: #1b212d;
+            color: #cfd9f4;
+            border: 1px solid #282e3c;
+        }
+
+        .modal-btn-close:hover {
+            background: #2a3040;
         }
 
         @media (max-width: 700px) {
@@ -433,6 +557,7 @@
             .benefit-grid { grid-template-columns: 1fr; gap: 12px; }
             .comparison-grid { grid-template-columns: 1fr; gap: 16px; background: transparent; }
             .comparison-item { border-bottom: 1px solid #1c202a; }
+            .video-wrapper video { max-height: 240px; }
         }
 
         svg.icon {
@@ -449,7 +574,7 @@
 <header>
     <div class="logo-area">
         <span class="logo-text">PINOOLAVENDER</span>
-        <span class="logo-sub">OBFUSCATOR</span>
+        <span class="logo-sub" id="takeApiBtn">TAKE API</span>
     </div>
     <div class="social-links">
         <a href="https://whatsapp.com/channel/0029Vb7Tlr5D38CMGUrSJN1T" target="_blank" class="social-icon" title="WhatsApp Channel">
@@ -466,6 +591,14 @@
 </header>
 
 <main>
+    <div class="video-container">
+        <div class="video-wrapper">
+            <video id="bgVideo" autoplay loop playsinline disableRemotePlayback>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
     <div class="editor-panel">
         <div class="panel-head">
             <div class="panel-title">
@@ -492,7 +625,7 @@
     <div class="editor-panel">
         <div class="panel-head">
             <div class="panel-title">
-                <div class="indicator" style="background: #e6b422;"></div>
+                <div class="indicator" style="background: #a8ff3e;"></div>
                 <span>obfuscated.lua</span>
                 <span class="lang-tag">OUTPUT</span>
             </div>
@@ -574,7 +707,7 @@
                     <p>Bantu mencegah pemakaian software tanpa izi dengan mempersulit upaya buat ngebypass restrictions</p>
                 </div>
             </div>
-            <div class="info-desc" style="margin-top: 20px; margin-bottom: 0; font-style: italic; border-left: 2px solid #b14eff; padding-left: 16px;">
+            <div class="info-desc" style="margin-top: 20px; margin-bottom: 0; font-style: italic; border-left: 2px solid #a8ff3e; padding-left: 16px;">
                 Jadi gini skuy: kalo lu distribusiin software dan mau tetep kontrol sama integrity nya, pake obfuscator adalah langkah paling cerdas
             </div>
         </div>
@@ -585,11 +718,99 @@
     <span class="accent">LAVENDER</span> · LUA OBFUSCATOR · <span class="accent">PINOOLAVENDER</span>
 </footer>
 
+<div class="modal-overlay" id="apiModal">
+    <div class="modal-content">
+        <h3>API WEAREDEVS</h3>
+        <p id="apiUrlDisplay">https://api-pinoolavender.vercel.app/api/obfuscate</p>
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-copy" id="copyApiBtn">COPY</button>
+            <button class="modal-btn modal-btn-close" id="closeModalBtn">TUTUP</button>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/lua/lua.min.js"></script>
 
 <script>
 (function() {
+    const video = document.getElementById('bgVideo');
+    
+    if(video) {
+        video.removeAttribute('controls');
+        video.style.pointerEvents = 'none';
+        
+        function forcePlay() {
+            video.play().then(() => {
+                video.loop = true;
+            }).catch(() => {
+                setTimeout(forcePlay, 100);
+            });
+        }
+        
+        if (video.readyState >= 2) {
+            forcePlay();
+        } else {
+            video.addEventListener('canplay', forcePlay);
+            video.addEventListener('loadeddata', forcePlay);
+        }
+        
+        video.addEventListener('ended', function() {
+            video.currentTime = 0;
+            video.play();
+        });
+    }
+    
+    const modal = document.getElementById('apiModal');
+    const takeApiBtn = document.getElementById('takeApiBtn');
+    const copyApiBtn = document.getElementById('copyApiBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const API_TO_COPY = 'https://api-pinoolavender.vercel.app/api/obfuscate';
+    const API_URL = "/api/obfuscate";
+    const statusSpan = document.getElementById("outputStatus");
+    
+    takeApiBtn.addEventListener('click', function() {
+        modal.style.display = 'flex';
+    });
+    
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+    
+    copyApiBtn.addEventListener('click', async function() {
+        try {
+            await navigator.clipboard.writeText(API_TO_COPY);
+            const originalText = copyApiBtn.textContent;
+            copyApiBtn.innerHTML = 'COPY';
+            copyApiBtn.style.background = '#2f9e5a';
+            setTimeout(() => {
+                copyApiBtn.innerHTML = 'COPY';
+                copyApiBtn.style.background = 'linear-gradient(135deg, #a855f7 0%, #8b1aff 100%)';
+            }, 2000);
+        } catch (err) {
+            const textarea = document.createElement('textarea');
+            textarea.value = API_TO_COPY;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            copyApiBtn.innerHTML = 'COPY';
+            copyApiBtn.style.background = '#2f9e5a';
+            setTimeout(() => {
+                copyApiBtn.innerHTML = 'COPY';
+                copyApiBtn.style.background = 'linear-gradient(135deg, #a855f7 0%, #8b1aff 100%)';
+            }, 2000);
+        }
+    });
+    
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
     const inputTa = document.getElementById("input_editor");
     const outputTa = document.getElementById("output_editor");
     
@@ -612,11 +833,9 @@
     });
     
     inputEditor.setValue('function main()\n    print("pinoolavender")\nend');
-    outputEditor.setValue("-- hasil muncul disini nanti");
+    outputEditor.setValue("-- hasil obfuscation bakal muncul disini");
     
     let lastOutputData = "";
-    const API_URL = "/api/obfuscate";
-    const statusSpan = document.getElementById("outputStatus");
     
     async function executeObfuscate() {
         const code = inputEditor.getValue();
@@ -641,11 +860,11 @@
             });
             if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
             const data = await resp.json();
-            lastOutputData = data.obfuscated || "-- obfuscator error";
+            lastOutputData = data.obfuscated || "-- obfuscator error: response gaada field obfuscated";
             outputEditor.setValue(lastOutputData);
             statusSpan.innerText = "siap";
         } catch (err) {
-            outputEditor.setValue("-- API error\n-- pastiin endpoint /api/obfuscate aktif\n-- " + err.message);
+            outputEditor.setValue("-- API error\n-- " + err.message);
             statusSpan.innerText = "error";
             lastOutputData = "";
         } finally {
